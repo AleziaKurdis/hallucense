@@ -1,0 +1,2 @@
+# hallucense
+virtual hallucination emitter
