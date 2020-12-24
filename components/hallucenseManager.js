@@ -139,7 +139,7 @@
             "spinStart": null,
             "spinFinish": null
         };
-        smokeEmitterID = Entities.addEntity(smokeEmitterProperties. "local");
+        smokeEmitterID = Entities.addEntity(smokeEmitterProperties, "local");
         
         //generate smoke ambient 
         var smokeAmbienceProperties = {
@@ -217,7 +217,7 @@
             "spinStart": 0,
             "spinFinish": 0.699999988079071
         };
-        smokeambienceID = Entities.addEntity(smokeAmbienceProperties. "local");
+        smokeambienceID = Entities.addEntity(smokeAmbienceProperties, "local");
         
         var today = new Date();
         processTimer = today.getTime();
