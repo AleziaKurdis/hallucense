@@ -11,23 +11,23 @@
 (function(){ 
     var ROOT = Script.resolvePath("").split("hallucenseManager.js")[0];
     var PARTICLE_SMOKE_EMITTER_URL = ROOT + "burning_smoke.png";
-    //var PARTICLE_SPARK_URL = ROOT + "PARTICLE_FIRE_SPARK.png";
+    var PARTICLE_HALLUCENSE_URL = [
+            ROOT + "PARTICLE_OPERA_SKULL.png",
+            ROOT + "PARTICULE_OPERA_018.png",
+            ROOT + "PARTICLE_HYPERLIGHTNING_2017.png"
+        ];
     
     var SMOKE_EMMITER_OFFSET = {"x": 0.0, "y": 0.2527, "z": 0.0};
     var SMOKE_AMBIENCE_OFFSET = {"x": 0.0, "y": 0.6316, "z": 0.0};
     
     var smokeEmitterID = Uuid.NULL;
     var smokeambienceID = Uuid.NULL;
-    
-    var isInitiated = false;
+    var hallucenseID = Uuid.NULL;
+
     var bottleCenter;
     var bottleRenderWithZones;
-    var DEGREES_TO_RADIANS = Math.PI / 180.0;
-    var HALF = 0.5;
-    var UPDATE_TIMER_INTERVAL = 5000; // 5 sec 
+    var updateTimerInterval = 15000; // 15 sec 
     var processTimer = 0;
-    var hasAlreadyShutdown = false;
-
     var thisEntity;
 
     this.preload = function(entityID) {
@@ -42,7 +42,7 @@
 
     function myTimer(deltaTime) {
         var today = new Date();
-        if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
+        if ((today.getTime() - processTimer) > updateTimerInterval ) {
             update();
             today = new Date();
             processTimer = today.getTime();
@@ -56,7 +56,6 @@
     }
 
     function initiate(EntID) {      
-        isInitiated = true;
         var properties = Entities.getEntityProperties(EntID, ["position", "renderWithZones"]);
         bottleCenter = properties.position;
         bottleRenderWithZones = properties.renderWithZones;
@@ -223,192 +222,110 @@
     }
     
     function update() {
-        // //print("AMBI-UPDATING!");
-        // if (isInitiated){
-            // var myAvPos = MyAvatar.position;
-            // var myAvRot = MyAvatar.orientation;            
-
-            
-            // //######### UNIVERSE SOUD VOLUME MANAGEMENT ##############
-            // var universeVolume = UNIVERSE_SOUND_VOLUME_MAXIMUM;
-            // var astroidFXstatus = true;
-
-            // if (univerSoundPlaying == 1) {
-                // if (universeVolume > 0) {
-                    // universeSoundInjector.setOptions({"volume": universeVolume});
-                // } else {
-                    // universeSoundInjector.stop();
-                    // univerSoundPlaying = 0;
-                // }
-            // } else {
-                // if (universeVolume > 0) {
-                    // universeSoundInjector = Audio.playSound(universeSound, {
-                            // "loop": true,
-                            // "localOnly": true,
-                            // "volume": universeVolume
-                            // });
-                    // univerSoundPlaying = 1;
-                // }   
-            // }
-            // // ######### END UNIVERSE SOUD VOLUME MANAGEMENT ######## 
-            // //############## NOCTURN LIGHTNINGS AND THUNDER #############
-            
-            // var hytrionCurrentHour = (GetCurrentCycleValue(8640000, DAY_DURATION)/100) / 3600;
-            
-            // //if ( hytrionCurrentHour > 11.5 || hytrionCurrentHour < 11 ) { //debug
-            // if ( hytrionCurrentHour > 21.5 || hytrionCurrentHour < 2.5 ) {  // 21.5 to 2.5
-                // if (storming) {
-                    // // Manage thunder and color
-                    // Entities.editEntity(lightningsID, { "position": Vec3.sum(myAvPos, Vec3.multiply(Quat.getForward(myAvRot), 2 )) });
-                    
-                    // if (Math.random() < 0.25 && universeVolume != 0) { //0.25 = 1 fois par 20 sec
-                        // var thunderVolume = Math.random() * (universeVolume/UNIVERSE_SOUND_VOLUME_MAXIMUM);
-                        // var thunderSoundIndex = Math.floor(Math.random() * thunderSound.length);
-                        // var thunderPitch = (0.6 + (Math.random() * 1.5));
-                        // //print("THUNDER! index (" + thunderSoundIndex + ") volume (" + thunderVolume + ") Pitch ("+ thunderPitch +")");
-                        // thunderInjector = Audio.playSound(thunderSound[thunderSoundIndex], {
-                            // "loop": false,
-                            // "localOnly": true,
-                            // "volume": thunderVolume,
-                            // "pitch": thunderPitch
-                            // });
-                        // //print("Injector: " + thunderInjector);
-                        // //print("Sound: " + JSON.stringify(thunderSound[thunderSoundIndex]));
-                    // }
-                // } else {
-                    // //initiate the storm
-                    // lightningsID = Entities.addEntity({
-                        // "type": "ParticleEffect",
-                        // "name": "NOCTURN_STORM",
-                        // "dimensions": {
-                            // "x": 3000,
-                            // "y": 3000,
-                            // "z": 3000
-                        // },
-                        // "position": Vec3.sum(myAvPos, Vec3.multiply(Quat.getForward(myAvRot), 2 )),
-                        // "grab": {
-                            // "grabbable": false
-                        // },
-                        // "shapeType": "ellipsoid",
-                        // "textures": LIGNTNINGS_PARTICLE_URL,
-                        // "renderWithZones": bottleRenderWithZones,
-                        // "maxParticles": 10,
-                        // "lifespan": 0.3,
-                        // "emitRate": 0.25,
-                        // "emitSpeed": 0,
-                        // "speedSpread": 0,
-                        // "emitOrientation": {
-                            // "x": 0,
-                            // "y": 0,
-                            // "z": 0,
-                            // "w": 1
-                        // },
-                        // "emitDimensions": {
-                            // "x": 3000,
-                            // "y": 3000,
-                            // "z": 3000
-                        // },
-                        // "polarStart": 0,
-                        // "polarFinish": Math.PI,
-                        // "azimuthStart": 0,
-                        // "azimuthFinish": Math.PI,
-                        // "emitAcceleration": {
-                            // "x": 0,
-                            // "y": 0,
-                            // "z": 0
-                        // },
-                        // "particleRadius": 900,
-                        // "radiusStart": 900,
-                        // "radiusFinish": 900,
-                        // "radiusSpread": 500,
-                        // "color": {
-                            // "red": 0,
-                            // "green": 128,
-                            // "blue": 255
-                        // },                        
-                        // "colorStart": {
-                            // "red": 255,
-                            // "green": 255,
-                            // "blue": 255
-                        // },
-                        // "colorFinish": {
-                            // "red": 0,
-                            // "green": 128,
-                            // "blue": 255
-                        // },
-                        // "colorSpread": {
-                            // "red": 0,
-                            // "green": 20,
-                            // "blue": 20
-                        // }, 
-                        // "alphaStart": 0.4,
-                        // "alpha": 0,
-                        // "alphaFinish": 0.4,
-                        // "particleSpin": 3.140000104904175,
-                        // "spinSpread": 3.140000104904175,
-                        // "spinStart": 3.140000104904175,
-                        // "spinFinish": 3.140000104904175,                        
-                        // "emitterShouldTrail": true                        
-                    // }, "local");
-                    
-                    // storming = true;
-                // }
-            // } else {
-                // if (storming) {
-                    // // stop the storm
-                    // Entities.deleteEntity(lightningsID);
-                    // lightningsID = Uuid.NULL;
-                    // storming = false;
-                // }
-            // }
-            
-            // //############## END NOCTURN LIGHTNINGS AND THUNDER #############
-
-
-            // //###################### ASTEROIDS ##############################
-            // var astroidEventFrequency = 0.45 + (Math.cos(GetCurrentCycleValue(360, UFO_TIDE_CYCLE_DURATION) * DEGREES_TO_RADIANS) * 0.13);
-            
-            // if (Math.random() < astroidEventFrequency && astroidFXstatus) {
-                // //trigger an astroid
-                // GenAsteroid(myAvPos);
-            // }
-            // //###################### END ASTEROIDS ##########################
-        // }
+        var avatarDistance = Vec3.distance(MyAvatar.position, bottleCenter);
+        var hallucenceProperties;
+        if (avatarDistance < 2.5) {
+            updateTimerInterval = 5000; //5 sec
+            if (hallucenseID !== Uuid.NULL;) {
+                //update mode
+                Entities.editEntity(hallucenseID, getHallucenceproperties(avatarDistance));
+            } else {
+                //create
+                hallucenseID = Entities.addEntity(getHallucenceproperties(avatarDistance), "local");
+            }
+        } else {
+            if (hallucenseID !== Uuid.NULL;) {
+                Entities.deleteEntity(hallucenseID);
+                hallucenseID = Uuid.NULL;
+            }
+            updateTimerInterval = 15000; //15 sec;
+        }
     } 
 
-    // ################## CYLCE AND TIME FUNCTIONS ###########################
-    function GetCurrentCycleValue(cyclelength, cycleduration){
-		var today = new Date();
-		var TodaySec = today.getTime()/1000;
-		var CurrentSec = TodaySec%cycleduration;
-		
-		return (CurrentSec/cycleduration)*cyclelength;
-		
-	}    
-    // ################## END CYLCE AND TIME FUNCTIONS ###########################   
-
-    function positionIsInsideEntityBounds(entityID, targetPosition) {
-        targetPosition = targetPosition || MyAvatar.position;
-
-        var properties = Entities.getEntityProperties(entityID, ["position", "dimensions", "rotation"]);
-        var entityPosition = properties.position;
-        var entityDimensions = properties.dimensions;
-        var entityRotation = properties.rotation;
-
-        var worldOffset = Vec3.subtract(targetPosition, entityPosition);
-        targetPosition = Vec3.multiplyQbyV(Quat.inverse(entityRotation), worldOffset);
-
-        var minX = -entityDimensions.x * HALF;
-        var maxX = entityDimensions.x * HALF;
-        var minY = -entityDimensions.y * HALF;
-        var maxY = entityDimensions.y * HALF;
-        var minZ = -entityDimensions.z * HALF;
-        var maxZ = entityDimensions.z * HALF;
-
-        return (targetPosition.x >= minX && targetPosition.x <= maxX
-            && targetPosition.y >= minY && targetPosition.y <= maxY
-            && targetPosition.z >= minZ && targetPosition.z <= maxZ);
+    function getHallucenceproperties(distance) {
+        
+        var properties = {
+            "type": "ParticleEffect",
+            "name": "hallucense",
+            "position": MyAvatar.position,
+            "dimensions": {
+                "x": 3.825000047683716,
+                "y": 3.825000047683716,
+                "z": 3.825000047683716
+            },
+            "queryAACube": {
+                "x": -3.312547206878662,
+                "y": -3.312547206878662,
+                "z": -3.312547206878662,
+                "scale": 6.625094413757324
+            },
+            "grab": {
+                "grabbable": false
+            },
+            "shapeType": "ellipsoid",
+            "color": {
+                "red": 0,
+                "green": 230,
+                "blue": 255
+            },
+            "alpha": 0.03999999910593033,
+            "textures": PARTICLE_HALLUCENSE_URL[Math.floor(Math.random() * PARTICLE_HALLUCENSE_URL.length)],
+            "maxParticles": 30,
+            "lifespan": 1,
+            "emitRate": 10,
+            "emitSpeed": 0,
+            "speedSpread": 0.10000000149011612,
+            "emitOrientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+            },
+            "emitDimensions": {
+                "x": 2,
+                "y": 2,
+                "z": 2
+            },
+            "polarFinish": 3.1415927410125732,
+            "emitAcceleration": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "accelerationSpread": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 0.5
+            },
+            "particleRadius": 0.25,
+            "radiusSpread": 0.20000000298023224,
+            "radiusStart": 0.20000000298023224,
+            "radiusFinish": 0.30000001192092896,
+            "colorSpread": {
+                "red": 15,
+                "green": 15,
+                "blue": 15
+            },
+            "colorStart": {
+                "red": 255,
+                "green": 0,
+                "blue": 255
+            },
+            "colorFinish": {
+                "red": 0,
+                "green": 255,
+                "blue": 9
+            },
+            "renderWithZones": bottleRenderWithZones,
+            "alphaSpread": 0.029999999329447746,
+            "alphaStart": 0,
+            "alphaFinish": 0,
+            "emitterShouldTrail": true,
+            "particleSpin": 0.1599999964237213,
+            "spinSpread": 0.5199999809265137,
+            "spinStart": 0,
+            "spinFinish": 0
+        };
+        return properties;
     }
-    
-    
 })
