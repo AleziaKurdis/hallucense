@@ -251,7 +251,7 @@
             currentDistance = 2.5;
         }
         
-        var rate = 9 * (1-(currentDistance/2.5));
+        var rate = 5 * (1-(currentDistance/2.5));
         
         var colorStart = hslToRgb(Math.random(), 1, 0.5);
         var color = hslToRgb(Math.random(), 1, 0.5);
@@ -295,9 +295,9 @@
                 "w": 1
             },
             "emitDimensions": {
-                "x": 2,
-                "y": 2,
-                "z": 2
+                "x": 3,
+                "y": 3,
+                "z": 3
             },
             "polarFinish": 3.1415927410125732,
             "emitAcceleration": {
