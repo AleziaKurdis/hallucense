@@ -53,6 +53,9 @@
         //Delete all local entities
         Entities.deleteEntity(smokeEmitterID);
         Entities.deleteEntity(smokeambienceID);
+        if (hallucenseID !== Uuid.NULL) {
+             Entities.deleteEntity(hallucenseID);
+        }
     }
 
     function initiate(EntID) {      
@@ -226,7 +229,7 @@
         var hallucenceProperties;
         if (avatarDistance < 2.5) {
             updateTimerInterval = 5000; //5 sec
-            if (hallucenseID !== Uuid.NULL;) {
+            if (hallucenseID !== Uuid.NULL) {
                 //update mode
                 Entities.editEntity(hallucenseID, getHallucenceproperties(avatarDistance));
             } else {
@@ -234,7 +237,7 @@
                 hallucenseID = Entities.addEntity(getHallucenceproperties(avatarDistance), "local");
             }
         } else {
-            if (hallucenseID !== Uuid.NULL;) {
+            if (hallucenseID !== Uuid.NULL) {
                 Entities.deleteEntity(hallucenseID);
                 hallucenseID = Uuid.NULL;
             }
