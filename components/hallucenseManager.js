@@ -251,7 +251,7 @@
             currentDistance = 2.5;
         }
         
-        var rate = 15 * (1-(currentDistance/2.5));
+        var rate = 9 * (1-(currentDistance/2.5));
         
         var colorStart = hslToRgb(Math.random(), 1, 0.5);
         var color = hslToRgb(Math.random(), 1, 0.5);
