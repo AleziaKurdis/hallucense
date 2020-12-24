@@ -32,10 +32,7 @@
 
     this.preload = function(entityID) {
         thisEntity = entityID;
-
-
         initiate(thisEntity);
-        
     };
 
 
@@ -46,7 +43,7 @@
     function myTimer(deltaTime) {
         var today = new Date();
         if ((today.getTime() - processTimer) > UPDATE_TIMER_INTERVAL ) {
-            updateNavigation();
+            update();
             today = new Date();
             processTimer = today.getTime();
         }  
@@ -64,7 +61,6 @@
         bottleCenter = properties.position;
         bottleRenderWithZones = properties.renderWithZones;
 
-                
         //Generate smoke emitter
         var smokeEmitterProperties = {
             "type": "ParticleEffect",
