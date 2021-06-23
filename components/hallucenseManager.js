@@ -256,6 +256,7 @@
         var color = hslToRgb(Math.random(), 1, 0.5);
         var colorEnd = hslToRgb(Math.random(), 1, 0.5);
         
+        
         var properties = {
             "type": "ParticleEffect",
             "name": "hallucense",
@@ -309,10 +310,10 @@
                 "y": 0.5,
                 "z": 0.5
             },
-            "particleRadius": 0.25,
-            "radiusSpread": 0.20000000298023224,
-            "radiusStart": 0.20000000298023224,
-            "radiusFinish": 0.30000001192092896,
+            "particleRadius": Math.random() * 0.3,
+            "radiusSpread": Math.random() * 0.15,
+            "radiusStart": Math.random() * 0.3,
+            "radiusFinish": Math.random() * 0.3,
             "colorSpread": {
                 "red": 15,
                 "green": 15,
