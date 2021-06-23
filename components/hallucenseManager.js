@@ -11,11 +11,10 @@
 (function(){ 
     var ROOT = Script.resolvePath("").split("hallucenseManager.js")[0];
     var PARTICLE_SMOKE_EMITTER_URL = ROOT + "burning_smoke.png";
-    var PARTICLE_HALLUCENSE_URL = [
-            ROOT + "PARTICLE_OPERA_SKULL.png",
-            ROOT + "PARTICULE_OPERA_018.png",
-            ROOT + "PARTICLE_HYPERLIGHTNING_2017.png"
-        ];
+    var NBR_PARTICULATIONS = 7;
+    
+    var PARTICULATIONS_MAX_RATE = 200;
+    var PARTICULATIONS_MAX_LIFE = 3;
     
     var SMOKE_EMMITER_OFFSET = {"x": 0.0, "y": 0.2527, "z": 0.0};
     var SMOKE_AMBIENCE_OFFSET = {"x": 0.0, "y": 0.6316, "z": 0.0};
@@ -251,8 +250,8 @@
             currentDistance = 2.5;
         }
         
-        var rate = 5 * (1-(currentDistance/2.5));
-        
+        var rate = Math.random() * PARTICULATIONS_MAX_RATE * (1-(currentDistance/2.5));
+        var life = Math.random() * PARTICULATIONS_MAX_LIFE;
         var colorStart = hslToRgb(Math.random(), 1, 0.5);
         var color = hslToRgb(Math.random(), 1, 0.5);
         var colorEnd = hslToRgb(Math.random(), 1, 0.5);
@@ -282,9 +281,9 @@
                 "blue": color[2]
             },
             "alpha": 0.03999999910593033,
-            "textures": PARTICLE_HALLUCENSE_URL[Math.floor(Math.random() * PARTICLE_HALLUCENSE_URL.length)],
-            "maxParticles": 30,
-            "lifespan": 1,
+            "textures": ROOT + "particulations/" + Math.floor(Math.random() * NBR_PARTICULATIONS) + ".png",
+            "maxParticles": rate * life,
+            "lifespan": life,
             "emitRate": rate,
             "emitSpeed": 0,
             "speedSpread": 0.10000000149011612,
