@@ -13,7 +13,7 @@
     var PARTICLE_SMOKE_EMITTER_URL = ROOT + "burning_smoke.png";
     var NBR_PARTICULATIONS = 7;
     
-    var PARTICULATIONS_MAX_RATE = 200;
+    var PARTICULATIONS_MAX_RATE = 300;
     var PARTICULATIONS_MAX_LIFE = 3;
     
     var SMOKE_EMMITER_OFFSET = {"x": 0.0, "y": 0.2527, "z": 0.0};
