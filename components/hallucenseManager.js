@@ -22,6 +22,7 @@
     var smokeEmitterID = Uuid.NULL;
     var smokeambienceID = Uuid.NULL;
     var hallucenseID = Uuid.NULL;
+    var burnerMaterialID = Uuid.NULL;
 
     var bottleCenter;
     var bottleRenderWithZones;
@@ -52,6 +53,7 @@
         //Delete all local entities
         Entities.deleteEntity(smokeEmitterID);
         Entities.deleteEntity(smokeambienceID);
+        Entities.deleteEntity(burnerMaterialID);
         if (hallucenseID !== Uuid.NULL) {
              Entities.deleteEntity(hallucenseID);
         }
@@ -61,6 +63,31 @@
         var properties = Entities.getEntityProperties(EntID, ["position", "renderWithZones"]);
         bottleCenter = properties.position;
         bottleRenderWithZones = properties.renderWithZones;
+
+        burnerMaterialID = Entities.addEntity({
+                "type": "Material",
+                "parentID": EntID,
+                "renderWithZones": bottleRenderWithZones,
+                "name": "Burner_Marterial - Classic",
+                "localPosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "localRotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "w": 1
+                },
+                "grab": {
+                    "grabbable": false
+                },
+                "materialURL": "https://aleziakurdis.github.io/hallucense/components/element_material.json",
+                "priority": 1,
+                "parentMaterialName": "[mat::BURNER]"
+            }, "local");
+
 
         //Generate smoke emitter
         var smokeEmitterProperties = {
