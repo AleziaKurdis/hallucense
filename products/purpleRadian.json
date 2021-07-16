@@ -1,0 +1,64 @@
+{
+  "DataVersion": 0,
+  "Entities": [
+        {
+            "id": "{b4a851e8-05e8-4ff2-b94b-150d58f417d3}",
+            "type": "Material",
+            "parentID": "{a2470c6a-ad32-4f19-ad69-8f21c8408a72}",
+            "name": "Burner_Marterial",
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+            },
+            "queryAACube": {
+                "x": 8431.5771484375,
+                "y": -2500.7861328125,
+                "z": 7404.61279296875,
+                "scale": 0.626953125
+            },
+            "grab": {
+                "grabbable": false
+            },
+            "materialURL": "https://aleziakurdis.github.io/hallucense/purpleRadian/element_material.json",
+            "priority": 1,
+            "parentMaterialName": "[mat::BURNER]"
+        },
+        {
+            "id": "{a2470c6a-ad32-4f19-ad69-8f21c8408a72}",
+            "type": "Model",
+            "name": "HALUCENSE - Purple Radian",
+            "dimensions": {
+                "x": 0.2593900263309479,
+                "y": 0.5084574222564697,
+                "z": 0.2593900263309479
+            },
+            "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+            },
+            "queryAACube": {
+                "x": -0.31348657608032227,
+                "y": -0.31348657608032227,
+                "z": -0.31348657608032227,
+                "scale": 0.6269731521606445
+            },
+            "grab": {
+                "grabbable": false
+            },
+            "shapeType": "box",
+            "modelURL": "https://aleziakurdis.github.io/hallucense/purpleRadian/hallucense.fbx",
+            "script": "https://aleziakurdis.github.io/hallucense/purpleRadian/hallucenseManager.js"
+        }
+    ],
+  "Id": "{087dc0ab-0ad9-4217-bdd2-6d66eb7faf00}",
+  "Version": 129
+}
