@@ -104,21 +104,15 @@
                 "z": 0,
                 "w": 1
             },
-            "queryAACube": {
-                "x": -2.4807026386260986,
-                "y": -2.4924213886260986,
-                "z": -2.4924213886260986,
-                "scale": 4.984842777252197
-            },
             "grab": {
                 "grabbable": false
             },
             "renderWithZones": bottleRenderWithZones,
             "shapeType": "ellipsoid",
             "color": {
-                "red": 74,
-                "green": 72,
-                "blue": 68
+                "red": 64,
+                "green": 80,
+                "blue": 64
             },
             "alpha": 0.10000000149011612,
             "textures": PARTICLE_SMOKE_EMITTER_URL,
@@ -147,14 +141,14 @@
             "radiusStart": 0,
             "radiusFinish": null,
             "colorStart": {
-                "red": 54,
-                "green": 53,
-                "blue": 42
+                "red": 50,
+                "green": 65,
+                "blue": 50
             },
             "colorFinish": {
-                "red": 194,
-                "green": 121,
-                "blue": 25
+                "red": 153,
+                "green": 184,
+                "blue": 152
             },
             "alphaStart": 0.20000000298023224,
             "alphaFinish": 0,
@@ -180,21 +174,15 @@
                 "z": 0,
                 "w": 1
             },
-            "queryAACube": {
-                "x": -8.70875072479248,
-                "y": -8.70875072479248,
-                "z": -8.70875072479248,
-                "scale": 17.41750144958496
-            },
             "renderWithZones": bottleRenderWithZones,
             "grab": {
                 "grabbable": false
             },
             "shapeType": "ellipsoid",
             "color": {
-                "red": 102,
-                "green": 100,
-                "blue": 93
+                "red": 90,
+                "green": 105,
+                "blue": 90
             },
             "alpha": 0.009999999776482582,
             "textures": PARTICLE_SMOKE_EMITTER_URL,
@@ -224,14 +212,14 @@
             "radiusStart": 1,
             "radiusFinish": 2,
             "colorStart": {
-                "red": 156,
-                "green": 158,
-                "blue": 98
+                "red": 96,
+                "green": 160,
+                "blue": 96
             },
             "colorFinish": {
                 "red": 45,
-                "green": 56,
-                "blue": 64
+                "green": 64,
+                "blue": 45
             },
             "alphaSpread": 0.0020000000949949026,
             "alphaStart": 0.0010000000474974513,
